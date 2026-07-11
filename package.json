@@ -1,0 +1,66 @@
+{
+  "name": "word-chain-game",
+  "version": "1.0.0",
+  "description": "按年级提供提示的英语单词接龙桌面与移动游戏",
+  "main": "electron-main.js",
+  "author": "Word Chain Game",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "test": "node verify-game-rules.js && node verify-vocabulary.js && node verify-official-builder.js",
+    "generate:icon": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-icon.ps1",
+    "dist:win": "npm run test && npm run generate:icon && electron-builder --win portable --x64",
+    "build:mobile:web": "node scripts/build-mobile-web.js",
+    "sync:android": "npm run build:mobile:web && cap sync android",
+    "dist:android": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-android.ps1"
+  },
+  "dependencies": {
+    "@capacitor/android": "6.2.1",
+    "@capacitor/core": "6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "6.2.1",
+    "electron": "43.1.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.wordchain.tailgame",
+    "productName": "词尾接接乐",
+    "asar": true,
+    "compression": "normal",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron-main.js",
+      "index.html",
+      "styles.css",
+      "app.js",
+      "game-rules.js",
+      "words.js",
+      "words-primary.js",
+      "words-secondary.js",
+      "words-college.js",
+      "words-advanced.js",
+      "words-expansion.js",
+      "words-official.js",
+      "assets/icon.png"
+    ],
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "词尾接接乐-${version}-Windows-便携版.${ext}"
+    },
+    "portable": {
+      "requestExecutionLevel": "user"
+    }
+  }
+}

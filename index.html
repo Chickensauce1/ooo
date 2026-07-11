@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="description"
+      content="按年级练习英语单词的单页单词接龙游戏"
+    />
+    <meta name="theme-color" content="#fffdf8" />
+    <title>词尾接接乐</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <defs>
+        <symbol id="icon-save" viewBox="0 0 24 24">
+          <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" />
+          <path d="M17 21v-8H7v8M7 3v5h8" />
+        </symbol>
+        <symbol id="icon-archive" viewBox="0 0 24 24">
+          <path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4" />
+        </symbol>
+        <symbol id="icon-restart" viewBox="0 0 24 24">
+          <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+          <path d="M3 3v5h5" />
+        </symbol>
+        <symbol id="icon-bulb" viewBox="0 0 24 24">
+          <path d="M9 18h6M10 22h4M8.5 14.5A7 7 0 1 1 15.5 14.5C14.5 15.3 14 16 14 18h-4c0-2-.5-2.7-1.5-3.5Z" />
+        </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </symbol>
+        <symbol id="icon-trash" viewBox="0 0 24 24">
+          <path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 11v5M14 11v5" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path d="m8 5 11 7-11 7Z" />
+        </symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M18 6 6 18" />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="m5 12 4 4L19 6" />
+        </symbol>
+        <symbol id="icon-folder" viewBox="0 0 24 24">
+          <path d="M3 6h7l2 2h9v11H3Z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="app-header">
+      <a class="brand" href="#main-game" aria-label="词尾接接乐首页">
+        <svg class="brand-mark" viewBox="0 0 112 52" role="img" aria-label="A、B、C 字母积木">
+          <rect x="2" y="10" width="36" height="36" rx="6" fill="#ff7b72" />
+          <rect x="38" y="4" width="36" height="36" rx="6" fill="#f7c94b" />
+          <rect x="74" y="12" width="36" height="36" rx="6" fill="#37b6a3" />
+          <path d="M21 18 12 34h5l2-4h6l2 4h5l-9-16Zm0 5 2 4h-4l2-4Z" fill="#fff" />
+          <path d="M50 12h10c5 0 8 2 8 6 0 2-1 4-3 5 3 1 4 3 4 6 0 5-4 7-9 7H50V12Zm6 5v4h4c2 0 3-1 3-2s-1-2-3-2h-4Zm0 9v5h4c2 0 3-1 3-3 0-1-1-2-3-2h-4Z" fill="#fff" />
+          <path d="M101 23c-2-2-4-3-7-3-5 0-8 4-8 9s3 9 8 9c3 0 6-1 8-4l-4-3c-1 2-2 2-4 2-2 0-3-2-3-4s1-4 3-4c2 0 3 1 4 2l3-4Z" fill="#fff" />
+        </svg>
+        <span>
+          <strong>词尾接接乐</strong>
+          <small>今天也来多记几个词</small>
+        </span>
+      </a>
+
+      <nav class="header-actions" aria-label="游戏操作">
+        <button class="button button-quiet" id="new-game-button" type="button">
+          <svg class="icon"><use href="#icon-restart" /></svg>
+          <span>新游戏</span>
+        </button>
+        <button class="button button-quiet" id="save-game-button" type="button" disabled>
+          <svg class="icon"><use href="#icon-save" /></svg>
+          <span>保存本局</span>
+        </button>
+        <button class="button button-dark" id="open-archive-button" type="button">
+          <svg class="icon"><use href="#icon-archive" /></svg>
+          <span>游戏档案</span>
+          <span class="count-badge" id="save-count">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="main-game">
+      <section class="setup-view" id="setup-view" aria-labelledby="setup-title">
+        <div class="setup-copy">
+          <span class="eyebrow">WORD CHAIN</span>
+          <h1 id="setup-title">今天从哪个年级开始？</h1>
+          <p>选一组刚刚好的词，热热身。</p>
+        </div>
+
+        <div class="setup-controls">
+          <label for="setup-level-select">我的年级</label>
+          <div class="select-wrap">
+            <select id="setup-level-select"></select>
+          </div>
+          <p class="level-note" id="setup-level-note"></p>
+          <button class="button button-primary button-large" id="start-game-button" type="button">
+            <svg class="icon"><use href="#icon-play" /></svg>
+            <span>开始接龙</span>
+          </button>
+        </div>
+
+        <div class="setup-visual" aria-hidden="true">
+          <span class="letter-card letter-card-a">A</span>
+          <span class="link-stroke"></span>
+          <span class="letter-card letter-card-e">E</span>
+          <span class="link-stroke second"></span>
+          <span class="letter-card letter-card-r">R</span>
+          <span class="visual-word first-word">apple</span>
+          <span class="visual-word second-word">earth</span>
+          <span class="visual-word third-word">river</span>
+        </div>
+      </section>
+
+      <section class="game-view" id="game-view" hidden>
+        <div class="game-toolbar">
+          <div class="level-control">
+            <label for="game-level-select">提示年级</label>
+            <div class="select-wrap compact">
+              <select id="game-level-select"></select>
+            </div>
+          </div>
+          <div class="session-stats" aria-label="本局数据">
+            <span><strong id="chain-count">1</strong> 个词</span>
+            <span class="stat-divider"></span>
+            <span>本级提示 <strong id="library-count">0</strong></span>
+          </div>
+        </div>
+
+        <div class="game-layout">
+          <section class="turn-panel" aria-labelledby="turn-heading">
+            <div class="turn-kicker">
+              <span class="live-dot"></span>
+              <span>轮到你啦</span>
+            </div>
+            <h2 id="turn-heading">接住这个字母</h2>
+
+            <div class="current-word-block">
+              <span class="current-label">上一个单词</span>
+              <strong id="current-word">apple</strong>
+              <span id="current-meaning">苹果</span>
+            </div>
+
+            <div class="letter-prompt" aria-live="polite">
+              <span>请用</span>
+              <strong id="required-letter">E</strong>
+              <span>开头</span>
+            </div>
+
+            <form class="word-form" id="word-form" novalidate>
+              <div class="word-input-wrap" id="word-input-wrap">
+                <span class="input-letter" id="input-letter">E</span>
+                <input
+                  id="word-input"
+                  name="word"
+                  type="text"
+                  inputmode="text"
+                  autocomplete="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  maxlength="28"
+                  aria-describedby="feedback-message"
+                />
+                <button class="submit-button" type="submit" aria-label="提交单词" title="提交单词">
+                  <svg class="icon"><use href="#icon-arrow" /></svg>
+                </button>
+              </div>
+              <p class="feedback-message" id="feedback-message" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="hint-area" id="hint-area">
+              <button class="hint-trigger" id="hint-trigger" type="button">
+                <svg class="icon"><use href="#icon-bulb" /></svg>
+                <span>给我一点提示</span>
+              </button>
+
+              <div class="hint-panel" id="hint-panel" hidden>
+                <div class="hint-panel-head">
+                  <span>提示方式</span>
+                  <div class="segmented" role="group" aria-label="提示方式">
+                    <button class="is-active" id="meaning-hint-tab" type="button" aria-pressed="true">中文</button>
+                    <button id="letter-hint-tab" type="button" aria-pressed="false">字母</button>
+                  </div>
+                </div>
+                <div class="hint-content" id="hint-content"></div>
+                <button class="reveal-button" id="reveal-letter-button" type="button" hidden>再揭一个字母</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="chain-panel" aria-labelledby="chain-heading">
+            <div class="section-heading-row">
+              <div>
+                <span class="eyebrow">YOUR CHAIN</span>
+                <h2 id="chain-heading">本局词链</h2>
+              </div>
+              <span class="level-pill" id="active-level-pill">七年级</span>
+            </div>
+
+            <ol class="chain-list" id="chain-list"></ol>
+
+            <div class="chain-empty-space" id="chain-empty-space">
+              <span>A</span><i></i><span>B</span><i></i><span>C</span>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>游戏档案保存在本机浏览器中</span>
+      <span class="footer-mark" aria-hidden="true">A · B · C</span>
+    </footer>
+
+    <dialog class="modal" id="save-dialog" aria-labelledby="save-dialog-title">
+      <form method="dialog" class="modal-shell" id="save-form">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">SAVE GAME</span>
+            <h2 id="save-dialog-title">给这局游戏起个名字</h2>
+          </div>
+          <button class="icon-button" value="cancel" type="submit" aria-label="关闭" title="关闭">
+            <svg class="icon"><use href="#icon-x" /></svg>
+          </button>
+        </div>
+        <label class="field-label" for="save-name-input">档案名称</label>
+        <input class="modal-input" id="save-name-input" maxlength="30" required />
+        <div class="save-preview">
+          <span id="save-preview-level">初中七年级</span>
+          <strong><span id="save-preview-count">1</span> 个词</strong>
+        </div>
+        <div class="modal-actions">
+          <button class="button button-quiet" value="cancel" type="submit">取消</button>
+          <button class="button button-primary" id="confirm-save-button" value="default" type="submit">
+            <svg class="icon"><use href="#icon-save" /></svg>
+            <span>保存档案</span>
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal archive-modal" id="archive-dialog" aria-labelledby="archive-title">
+      <div class="modal-shell">
+        <div class="modal-head">
+          <div>
+            <span class="eyebrow">GAME ARCHIVE</span>
+            <h2 id="archive-title">游戏档案</h2>
+          </div>
+          <button class="icon-button" id="close-archive-button" type="button" aria-label="关闭" title="关闭">
+            <svg class="icon"><use href="#icon-x" /></svg>
+          </button>
+        </div>
+        <div class="archive-list" id="archive-list"></div>
+      </div>
+    </dialog>
+
+    <template id="archive-item-template">
+      <article class="archive-item">
+        <div class="archive-item-main">
+          <span class="archive-level"></span>
+          <h3 class="archive-name"></h3>
+          <p class="archive-meta"></p>
+          <div class="archive-chain-preview"></div>
+        </div>
+        <div class="archive-actions">
+          <button class="button button-primary resume-save-button" type="button">
+            <svg class="icon"><use href="#icon-play" /></svg>
+            <span>继续游戏</span>
+          </button>
+          <button class="icon-button delete-save-button" type="button" aria-label="删除档案" title="删除档案">
+            <svg class="icon"><use href="#icon-trash" /></svg>
+          </button>
+        </div>
+      </article>
+    </template>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+      <svg class="icon"><use href="#icon-check" /></svg>
+      <span id="toast-message"></span>
+    </div>
+
+    <script src="words.js"></script>
+    <script src="words-primary.js"></script>
+    <script src="words-secondary.js"></script>
+    <script src="words-college.js"></script>
+    <script src="words-advanced.js"></script>
+    <script src="words-expansion.js"></script>
+    <script src="words-official.js"></script>
+    <script src="game-rules.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

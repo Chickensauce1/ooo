@@ -1,0 +1,18 @@
+node_modules/
+dist/
+mobile/www/
+android/.gradle/
+android/app/build/
+android/local.properties
+
+# Local release artifacts
+发布版/*.apk
+发布版/*.exe
+发布版/*.zip
+
+# Logs, caches, and editor settings
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,9 @@
+{
+  "appId": "com.wordchain.tailgame",
+  "appName": "词尾接接乐",
+  "webDir": "mobile/www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#fffdf8"
+  }
+}
