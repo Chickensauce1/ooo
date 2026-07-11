@@ -2,13 +2,13 @@
   "name": "word-chain-game",
   "version": "1.0.0",
   "description": "按年级提供提示的英语单词接龙桌面与移动游戏",
-  "homepage": "https://chickensauce1.github.io/ooo/",
+  "homepage": "https://chickensauce1.github.io/word-chain-game/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Chickensauce1/ooo.git"
+    "url": "git+https://github.com/Chickensauce1/word-chain-game.git"
   },
   "bugs": {
-    "url": "https://github.com/Chickensauce1/ooo/issues"
+    "url": "https://github.com/Chickensauce1/word-chain-game/issues"
   },
   "main": "electron-main.js",
   "author": "Word Chain Game",

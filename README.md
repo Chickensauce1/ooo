@@ -6,7 +6,7 @@
 
 ## 在线体验
 
-[打开 GitHub Pages 在线版](https://chickensauce1.github.io/ooo/)，无需安装即可在浏览器中游玩。
+[打开 GitHub Pages 在线版](https://chickensauce1.github.io/word-chain-game/)，无需安装即可在浏览器中游玩。
 
 游戏也支持 Windows 便携版和 Android APK。打包产物建议通过仓库的 **Releases** 页面发布，不直接提交到源码历史中。
 
@@ -63,7 +63,7 @@ npm run dist:android
 
 ### Web / GitHub Pages
 
-推送到默认分支后，[Pages 工作流](.github/workflows/pages.yml) 会先运行验证套件，再自动更新 [GitHub Pages 在线版](https://chickensauce1.github.io/ooo/)。
+推送到默认分支后，[Pages 工作流](.github/workflows/pages.yml) 会先运行验证套件，再自动更新 [GitHub Pages 在线版](https://chickensauce1.github.io/word-chain-game/)。
 
 ## 常用命令
 
