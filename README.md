@@ -6,7 +6,7 @@
 
 ## 在线体验
 
-仓库启用 GitHub Pages 后，可直接在浏览器中游玩。部署地址会显示在仓库右侧的 **Deployments** 区域。
+[打开 GitHub Pages 在线版](https://chickensauce1.github.io/ooo/)，无需安装即可在浏览器中游玩。
 
 游戏也支持 Windows 便携版和 Android APK。打包产物建议通过仓库的 **Releases** 页面发布，不直接提交到源码历史中。
 
@@ -63,7 +63,7 @@ npm run dist:android
 
 ### Web / GitHub Pages
 
-推送到默认分支后，[Pages 工作流](.github/workflows/pages.yml) 会自动部署 Web 版。首次使用时，需要在仓库的 **Settings > Pages > Build and deployment** 中将 Source 设置为 **GitHub Actions**。
+推送到默认分支后，[Pages 工作流](.github/workflows/pages.yml) 会先运行验证套件，再自动更新 [GitHub Pages 在线版](https://chickensauce1.github.io/ooo/)。
 
 ## 常用命令
 
@@ -97,4 +97,3 @@ npm run dist:android
 ## 版权
 
 本项目目前未采用开源许可证，版权归项目作者所有。未经明确许可，不得复制、修改、分发或用于商业用途。详见 [LICENSE](LICENSE)。
-
